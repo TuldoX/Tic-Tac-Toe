@@ -65,9 +65,10 @@ int main() {
     cout << "*  Tic Tac Toe Game  *\n";
     cout << "**********************\n";
     cout << '\n';
-
+    
     while (isBoxEmpty(item, size)) {
         vypis(item);
+        cout << "Choose a box (from up, 1 - 9): ";
         cin >> input;
         if (item[input - 1] == ' ') {
             item[input - 1] = 'X';
