@@ -71,22 +71,28 @@ int main() {
         cin >> input;
         if (item[input - 1] == ' ') {
             item[input - 1] = 'X';
-
+            if(winner(item)){
+                vypis(item);
+                cout << "Player wins!";
+                return 0;
+            }
             if (!isBoxEmpty(item, size)) {
                 cout << "No empty boxes left. Game over!" << endl;
                 break;
             }
             int j = pcChar(item, size);
             item[j] = 'O';
+            if(winner(item)){
+                vypis(item);
+                cout << "PC wins!";
+                return 0;
+            }
         }
-        else cout << "This box is already taken!\n";
-         if(winner(item)){
-            vypis(item);
-            cout << "Game is over!";
-            return 0;
-        }
-       
+        else cout << "This box is already taken!\n";       
     }
-    vypis(item); 
+    if (!winner(item)) {
+        vypis(item);
+        cout << "The game is a draw!";
+    }
     return 0;
 }
