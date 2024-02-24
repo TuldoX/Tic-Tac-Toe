@@ -2,6 +2,20 @@
 #include<ctime>
 using namespace std;
 
+bool winner(char box[]){
+    if(
+        (box[0] == box[1] && box[1] == box[2]) && box[0] != ' '|| 
+        (box[3] == box[4] && box[4] == box[5])  && box[3] != ' '|| 
+        (box[6] == box[7] && box[7] == box[8])  && box[6] != ' '||
+        (box[0] == box[3] && box[3] == box[6])  && box[0] != ' '|| 
+        (box[1] == box[4] && box[4] == box[7])  && box[1] != ' '|| 
+        (box[2] == box[5] && box[5] == box[8])  && box[2] != ' '||
+        (box[0] == box[4] && box[4] == box[8])  && box[0] != ' '|| 
+        (box[2] == box[4] && box[4] == box[6])   && box[2] != ' '
+    ) return true;
+    else return false;
+}
+
 bool isBoxEmpty(char box[], int size) {
     for (int i = 0; i < size; i++) {
         if (box[i] == ' ') return true;
@@ -57,6 +71,7 @@ int main() {
         cin >> input;
         if (item[input - 1] == ' ') {
             item[input - 1] = 'X';
+
             if (!isBoxEmpty(item, size)) {
                 cout << "No empty boxes left. Game over!" << endl;
                 break;
@@ -65,6 +80,12 @@ int main() {
             item[j] = 'O';
         }
         else cout << "This box is already taken!\n";
+         if(winner(item)){
+            vypis(item);
+            cout << "Game is over!";
+            return 0;
+        }
+       
     }
     vypis(item); 
     return 0;
