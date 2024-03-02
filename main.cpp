@@ -1,5 +1,6 @@
 #include<iostream>
 #include<ctime>
+#include<unistd.h>
 using namespace std;
 
 bool winner(char box[]){
@@ -38,6 +39,11 @@ int pcChar(char box[], int size) {
 }
 
 void vypis(char item[]) {
+    system("cls");
+     cout << "**********************\n";
+    cout << "*  Tic Tac Toe Game  *\n";
+    cout << "**********************\n";
+    cout << '\n';
     cout << "     |     |   \n";
     cout << "  " << item[0] << "  |  " << item[1] << "  |  " << item[2] << '\n';
     cout << "     |     |   \n";
@@ -61,10 +67,7 @@ int main() {
     int size = sizeof(item) / sizeof(item[0]);
     int input;
 
-    cout << "**********************\n";
-    cout << "*  Tic Tac Toe Game  *\n";
-    cout << "**********************\n";
-    cout << '\n';
+   
     
     while (isBoxEmpty(item, size)) {
         vypis(item);
@@ -89,7 +92,10 @@ int main() {
                 return 0;
             }
         }
-        else cout << "This box is already taken!\n";       
+        else {
+            cout << "This box is already taken!\n";
+            sleep(1);
+        } 
     }
     if (!winner(item)) {
         vypis(item);
